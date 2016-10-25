@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<link rel=stylesheet href="todo-style1.css">
+<link rel=stylesheet href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<script type='text/javascript' src='bower_components/jquery/dist/jquery.min.js'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="todo-model.js"></script>
+<script src="todo-angular.js"></script>
+
+<body ng-app=TodoListApp>
+
+<div ng-controller=TodoListController>
+
+<!--
+  ng-change does not behave the same as the DOM onchange event handler;
+  ng-change will cause the event handler to be called even when one character
+  is inserted/deleted to/from the input textfield.
+  The ng-model-options="{updateOn: 'blur change'}" attribute force
+  the model to be updated only when those DOM events happens. As a result,
+  the callback function will only be called when any of those two DOM events
+  happens.
+-->
+<div id=inputpanel>
+ 	<input type="text" placeholder="Enter a description ..."
+         ng-model="todolist.editedDesc"
+         ng-model-options="{ updateOn: 'blur change' }"
+         ng-change="addNewTodoItem()">
+</div>
+
+
+ <ul uib-pagination total-items="todolist.items.length" ng-model="currentPage" items-per-page = "numPerPage"></ul>
+ 
+<div id=listpanel>
+  <ul>
+    <li ng-repeat="item in filteredTodos">
+      <input type=checkbox ng-model="item.isCompleted">
+      <span>{{item.desc}}</span>
+      <button ng-click='forward($index)'>&#9650;</button>
+      <button ng-click='backward($index)'>&#9660;</button>
+      <button ng-click='deleteItem($index)'>x</button>
+    </li>
+  </ul>
+
+</div>
+
+
+</body>
+</html>

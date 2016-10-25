@@ -1,0 +1,59 @@
+* { box-sizing: border-box; }
+
+#listpanel input[type='checkbox']:checked ~ span {
+  text-decoration: line-through;
+}
+
+#listpanel li > button {
+  margin: 0 2px;
+  width: 2em;
+  xvisibility: hidden;
+}
+
+#listpanel li:hover > button {
+  xvisibility: visible;
+}
+
+#listpanel ul {
+  padding: 0;
+}
+
+#listpanel li {
+  padding: 2px;
+  width: 100%;
+  max-width: 640px;
+  list-style: none;
+  border: 1px grey solid;
+}
+
+#page_num_panel {
+  margin: 5px 0;
+}
+
+#page_num_panel .page_num {
+  padding: 0 5px;
+  margin: 0 5px;
+}
+
+#page_num_panel .current_page {
+  border: black solid 2px;
+}
+
+
+#listpanel li {
+  display: flex;
+}
+
+#listpanel li > input[type='checkbox'] {
+    min-width: 1em;
+}
+
+#listpanel li > * {
+  flex: 1;
+  flex-grow: 1;
+}
+
+#listpanel li > span {
+  flex-grow: 100;
+  margin: 0 5px;
+}
